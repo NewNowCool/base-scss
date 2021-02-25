@@ -1,0 +1,23 @@
+// $bases enables scaling layout
+// use px value to stop scaling
+// use a factor of 10 to workaround chrome issue
+@forward "../../src" with (
+  $reset: true, // include reset, default true
+
+  $breakpoints: (
+    tablet: 720px,
+    desktop: 1024px,
+    box: 1280px
+  ),
+
+  // breakpoints names and size values may be used as keys
+  $bases: (
+    // scaling
+    0: 420,
+    tablet: 768,
+    desktop: 1024,
+
+    // stop scaling
+    box: 1px
+  )
+);

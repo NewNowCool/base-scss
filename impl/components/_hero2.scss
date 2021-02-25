@@ -1,0 +1,16 @@
+@use "../lib/nn" as *;
+@use "../placeholders/typo";
+
+.hero2 {
+  background: red;
+
+  font-size: 2rem;
+  
+  @include mq-from(tablet) {
+    background: orange;
+  }
+}
+
+.hero__title2 {
+  @extend %h1;
+}

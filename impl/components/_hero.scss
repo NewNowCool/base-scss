@@ -1,0 +1,21 @@
+@use "../lib/nn" as *;
+@use "../config/transitions";
+@use "../placeholders/typo";
+
+.hero {
+  background: red;
+
+  font-size: 2rem;
+  
+  @include mq-from(tablet) {
+    background: orange;
+  }
+}
+
+.hero__title {
+  @extend %h1;
+}
+
+.hero__cta {
+  @extend %transition-button;
+}

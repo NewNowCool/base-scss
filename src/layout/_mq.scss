@@ -1,0 +1,21 @@
+@use "../util/map";
+
+$breakpoints: () !default;
+
+@mixin from($breakpoint, $breakpoints: $breakpoints) {
+  @media screen and (min-width: #{map.get-default($breakpoints, $breakpoint)}) {
+    @content;
+  }
+}
+
+@mixin to($breakpoint, $breakpoints: $breakpoints) {
+  @media screen and (max-width: #{map.get-default($breakpoints, $breakpoint) - 1}) {
+    @content;
+  }
+}
+
+@mixin between($breakpoint-from, $breakpoint-to, $breakpoints: $breakpoints) {
+  @media screen and (min-width: #{map.get-default($breakpoints, $breakpoint-from)}) and (max-width: #{map.get-default($breakpoints, $breakpoint-to)}) {
+    @content;
+  }
+}
