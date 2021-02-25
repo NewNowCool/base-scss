@@ -58,6 +58,12 @@ We reset (not normalize) styles because we want full control and no default styl
 
 The default is to include the reset. You may disable by setting `$reset: false` in the configuration file.
 
+## Flex Layout
+
+The idea behind the flex layout is to have the page scale like an image. To achieve this, we use `vw` units for sizing.
+By setting the root font size in `vw`, we can use `rem` units for everything else. The trick is to define the root font size that a pixel in the design matches 1rem in code.
+Due to a chrome issue, we sadly have to use a factor of 10 (`1px = 0.1rem`) though. That way, we can easily translate pixel based designs into rem based code.
+
 ## Media Queries
 
 Available media query mixins:
