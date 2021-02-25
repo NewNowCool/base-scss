@@ -1,5 +1,5 @@
 {
-  "name": "newnow-scss",
+  "name": "@newnow/base-scss",
   "version": "0.1.0",
   "main": "src/_index.scss",
   "style": "src/_index.scss",
