@@ -1,6 +1,6 @@
 {
   "name": "@newnow/base-scss",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "src/_index.scss",
   "style": "src/_index.scss",
   "license": "MIT",
