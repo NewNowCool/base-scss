@@ -1,14 +1,35 @@
-# How To
+# base-scss
+
+SCSS utilities for projects from scratch.
+
+* Reset CSS
+* Media Queries
+* Scaling Flex Layout (see explanation below)
+* Easing Variables
+* Font Mixin
+
+## Installation
+
+Install by using your favorite package manager.
+
+```
+yarn add -D @newnow/base-scss
+npm i -D @newnow/base-scss
+```
+
+Or copy the `/src` folder to your project.
+
+## Configuration
 
 Create a configuration file and include in your main scss file. See `/impl` for usage examples.
 
-## Configuration file
+### Configuration file
 
 The configuration file will setup the library with breakpoints and flex layout if `$bases` is set.
 
 `lib/_nn.scss`
 
-```
+```scss
 // $bases enables scaling layout
 // use px value to stop scaling
 // use a factor of 10 to workaround chrome issue
@@ -34,41 +55,45 @@ The configuration file will setup the library with breakpoints and flex layout i
 );
 ```
 
-## Main SCSS
+### Main SCSS
 
-```
+```scss
 @use "lib/nn";
 ```
 
 This will setup the breakpoints and flex layout if enabled in the configuration file.
 
-## In Components
+### In Components
 
-```
+```scss
 @use "../lib/nn" as *;
 ```
 
 This will make mixins and placeholders available in the component.
 
-# Usage
+## Usage
 
-## Reset
+The library aims to provide utilities and add as little css as possible by itself. The only css that is added is by the reset and the flex layout. If you disable both, no css is written when including the library.
+
+### Reset
 
 We reset (not normalize) styles because we want full control and no default styles to interfere.
 
 The default is to include the reset. You may disable by setting `$reset: false` in the configuration file.
 
-## Flex Layout
+### Flex Layout
 
 The idea behind the flex layout is to have the page scale like an image. To achieve this, we use `vw` units for sizing.
 By setting the root font size in `vw`, we can use `rem` units for everything else. The trick is to define the root font size that a pixel in the design matches 1rem in code.
 Due to a chrome issue, we sadly have to use a factor of 10 (`1px = 0.1rem`) though. That way, we can easily translate pixel based designs into rem based code.
 
-## Media Queries
+If you do not configure `$bases`, flex layout will not be used.
+
+### Media Queries
 
 Available media query mixins:
 
-```
+```scss
 @include mq-from() {}
 @include mq-to() {}
 @include mq-between() {}
@@ -76,7 +101,7 @@ Available media query mixins:
 
 You can use breakpoint names or pixels.
 
-```
+```scss
 @include mq-from(tablet) {}
 @include mq-to(1000px) {}
 @include mq-between(mobile, 2000px) {}
@@ -84,17 +109,17 @@ You can use breakpoint names or pixels.
 
 The media queries include the lower bound and exclude the upper bound.
 
-```
+```scss
 @include mq-to(1000px) {} // 0px to 999px
 @include mq-from(1000px) {} // 1000px and up
 @include mq-between(1000px, 2000px) {} // 1000px to 1999px
 ```
 
-## Easings
+### Easings
 
 Available easing variables:
 
-```
+```scss
 $linear: cubic-bezier(0.25, 0.25, 0.75, 0.75);
 $ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 $easeIn: cubic-bezier(0.42, 0, 1, 1);
@@ -129,18 +154,18 @@ $easeInOutCirc: cubic-bezier(0.785, 0.135, 0.15, 0.86);
 $easeInOutBack: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 ```
 
-## Fonts
+### Fonts
 
 Load fonts using the font-face mixin:
 
-```
+```scss
 @include font-face(Roboto, "../../fonts/Roboto", normal, normal);
 ```
 
 The mixin takes the following arguments:
 
-```
-mixin font-face(
+```scss
+@mixin font-face(
   $name,
   $path,
   $weight: null,
