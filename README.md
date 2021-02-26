@@ -33,7 +33,7 @@ The configuration file will setup the library with breakpoints and flex layout i
 // $bases enables scaling layout
 // use px value to stop scaling
 // use a factor of 10 to workaround chrome issue
-@forward "../../src" with (
+@forward "@newnow/base-scss" with (
   $reset: true, // include reset, default true
 
   $breakpoints: (
