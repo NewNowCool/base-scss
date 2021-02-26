@@ -135,7 +135,7 @@ For example:
 ```scss
 .hero {
   padding: 2.4rem; // 24px at 420px width
-  min-height: 40rem; // 400px at 420px widt
+  min-height: 40rem; // 400px at 420px width
 
   @include mq-from(tablet) {
     padding: 3.6rem; // 36px at 768px width
