@@ -2,11 +2,11 @@
 
 SCSS utilities for projects from scratch.
 
-* Reset CSS
-* Media Queries
-* Scaling Flex Layout (see explanation below)
-* Easing Variables
-* Font Mixin
+- Reset CSS
+- Media Queries
+- Scaling Flex Layout (see explanation below)
+- Easing Variables
+- Font Mixin
 
 ## Installation
 
@@ -32,7 +32,6 @@ The configuration file will setup the library with breakpoints and flex layout i
 ```scss
 // $bases enables scaling layout
 // use px value to stop scaling
-// use a factor of 10 to workaround chrome issue
 @forward "@newnow/base-scss" with (
   $reset: true, // include reset, default true
 
@@ -87,6 +86,64 @@ The idea behind the flex layout is to have the page scale like an image. To achi
 By setting the root font size in `vw`, we can use `rem` units for everything else. The trick is to define the root font size that a pixel in the design matches 1rem in code.
 Due to a chrome issue, we sadly have to use a factor of 10 (`1px = 0.1rem`) though. That way, we can easily translate pixel based designs into rem based code.
 
+The configuration consists of key value pairs. The key is the breakpoint and the value is the pixel width of the design used between the breakpoint and the next larger breakpoint.
+
+The breakpoint may be defined as a breakpoint name as defined in `$breakpoints` or a pixel value (0 is also fine).
+
+The value (base) should either be a unitless number or `1px`. A unitless number will tell the layout to scale and use the number as the pixel width of the design. `1px` will stop the scaling and will make `0.1rem = 1px`.
+
+Example time!
+
+Your designer has designed for three screens: mobile, tablet, desktop. The designs are done using screen widths of 420px, 768px, 1280px.
+
+First the mobile design should be used, starting at 720px the tablet design and at 1024px the desktop design. All designs should scale. At 1280px the desktop design should stop scaling, so that the page does not get too huge.
+
+The configuration for that case looks like this:
+
+```scss
+$bases: (
+  0: 420,
+  720px: 768,
+  1024px: 1280,
+  1280px: 1px,
+);
+```
+
+Using breakpoint names:
+
+```scss
+$breakpoints: (
+  tablet: 720px,
+  desktop: 1024px,
+  box: 1280px,
+);
+```
+
+```scss
+$bases: (
+  0: 420,
+  tablet: 768,
+  desktop: 1024,
+  box: 1px,
+);
+```
+
+Now when developing components, you can just use the pixel size values in the design and translate them into rem units (keep the factor 10 in mind).
+
+For example:
+
+```scss
+.hero {
+  padding: 2.4rem; // 24px at 420px width
+  min-height: 40rem; // 400px at 420px widt
+
+  @include mq-from(tablet) {
+    padding: 3.6rem; // 36px at 768px width
+    min-height: 50rem; // 500px at 768px width
+  }
+}
+```
+
 If you do not configure `$bases`, flex layout will not be used.
 
 ### Media Queries
@@ -94,25 +151,34 @@ If you do not configure `$bases`, flex layout will not be used.
 Available media query mixins:
 
 ```scss
-@include mq-from() {}
-@include mq-to() {}
-@include mq-between() {}
+@include mq-from() {
+}
+@include mq-to() {
+}
+@include mq-between() {
+}
 ```
 
 You can use breakpoint names or pixels.
 
 ```scss
-@include mq-from(tablet) {}
-@include mq-to(1000px) {}
-@include mq-between(mobile, 2000px) {}
+@include mq-from(tablet) {
+}
+@include mq-to(1000px) {
+}
+@include mq-between(mobile, 2000px) {
+}
 ```
 
 The media queries include the lower bound and exclude the upper bound.
 
 ```scss
-@include mq-to(1000px) {} // 0px to 999px
-@include mq-from(1000px) {} // 1000px and up
-@include mq-between(1000px, 2000px) {} // 1000px to 1999px
+@include mq-to(1000px) {
+} // 0px to 999px
+@include mq-from(1000px) {
+} // 1000px and up
+@include mq-between(1000px, 2000px) {
+} // 1000px to 1999px
 ```
 
 ### Easings
@@ -171,5 +237,5 @@ The mixin takes the following arguments:
   $weight: null,
   $style: null,
   $exts: eot woff2 woff ttf svg
-)
+);
 ```
