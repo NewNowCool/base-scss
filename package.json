@@ -1,6 +1,7 @@
 {
   "name": "@newnow/base-scss",
   "version": "0.1.2",
+  "repository": "github:NewNowCool/base-scss",
   "main": "src/_index.scss",
   "style": "src/_index.scss",
   "license": "MIT",
