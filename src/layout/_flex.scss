@@ -8,13 +8,15 @@ $base-factor: 10 !default; // use the factor 10 because of a chrome issue with s
   @return is-number($value) and index("px", unit($value)) != null;
 }
 
-html {
-  @each $breakpoint, $base in $bases {
-    @include mq.from($breakpoint) {
-      @if (is-px($base)) {
-        font-size: $base * $base-factor;
-      } @else {
-        font-size: (100vw / $base * $base-factor);
+@if $bases != () {
+  html {
+    @each $breakpoint, $base in $bases {
+      @include mq.from($breakpoint) {
+        @if (is-px($base)) {
+          font-size: $base * $base-factor;
+        } @else {
+          font-size: (100vw / $base * $base-factor);
+        }
       }
     }
   }
