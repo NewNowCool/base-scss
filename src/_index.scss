@@ -1,6 +1,7 @@
 $breakpoints: () !default;
 $bases: () !default;
 $reset: true !default;
+$font-smoothing: true !default;
 
 @forward "tools/easings";
 @forward "tools/font-face";
@@ -10,7 +11,8 @@ $reset: true !default;
 );
 
 @use "reset" with (
-  $reset: $reset
+  $reset: $reset,
+  $font-smoothing: $font-smoothing
 );
 
 @use "layout/flex" with (

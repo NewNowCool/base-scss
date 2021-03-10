@@ -34,6 +34,7 @@ The configuration file will setup the library with breakpoints and flex layout i
 // use px value to stop scaling
 @forward "@newnow/base-scss" with (
   $reset: true, // include reset, default true
+  $font-smooting: true, // include font smoothing, default true
 
   $breakpoints: (
     tablet: 720px,

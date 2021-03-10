@@ -3,6 +3,7 @@
 // use a factor of 10 to workaround chrome issue
 @forward "../../src" with (
   $reset: true, // include reset, default true
+  $font-smoothing: true, // include font-smoothing, default true
 
   $breakpoints: (
     tablet: 720px,
