@@ -1,4 +1,5 @@
 @use "sass:string";
+@use "sass:math";
 @use "mq";
 
 $bases: () !default;
@@ -15,7 +16,7 @@ $base-factor: 10 !default; // use the factor 10 because of a chrome issue with s
         @if (is-px($base)) {
           font-size: $base * $base-factor;
         } @else {
-          font-size: (100vw / $base * $base-factor);
+          font-size: (math.div(100vw, $base) * $base-factor);
         }
       }
     }
