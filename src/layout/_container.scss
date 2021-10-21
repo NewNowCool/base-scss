@@ -1,0 +1,34 @@
+@use "sass:map";
+@use "mq";
+
+$container: () !default;
+
+@mixin container($breakpoint: null) {
+  @if $breakpoint {
+    @include container-breakpoint($breakpoint);
+  }
+
+  @if not $breakpoint {
+    @include container-responsive;
+  }
+}
+
+@mixin container-breakpoint($breakpoint: null) {
+  margin-left: map.get($container, $breakpoint, "margin");
+  margin-right: map.get($container, $breakpoint, "margin");
+  max-width: map.get($container, $breakpoint, "max-width");
+  padding-left: map.get($container, $breakpoint, "padding");
+  padding-right: map.get($container, $breakpoint, "padding");
+}
+
+@mixin container-responsive {
+  @each $breakpoint, $data in $container {
+    @include mq.from($breakpoint) {
+      @include container-breakpoint($breakpoint);
+    }
+  }
+}
+
+@function container-padding($breakpoint) {
+  @return map.get($container, $breakpoint, "padding");
+}

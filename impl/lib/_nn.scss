@@ -20,5 +20,21 @@
 
     // stop scaling
     box: 1px
+  ),
+
+  $container: (
+    0: (
+      max-width: 1200px,
+      padding: 1.6rem,
+      margin: auto // center
+    ),
+
+    tablet: (
+      padding: 2.4rem
+    ),
+
+    desktop: (
+      padding: 3.2rem
+    )
   )
 );

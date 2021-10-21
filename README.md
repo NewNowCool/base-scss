@@ -34,7 +34,7 @@ The configuration file will setup the library with breakpoints and flex layout i
 // use px value to stop scaling
 @forward "@newnow/base-scss" with (
   $reset: true, // include reset, default true
-  $font-smooting: true, // include font smoothing, default true
+  $font-smoothing: true, // include font-smoothing, default true
 
   $breakpoints: (
     tablet: 720px,
@@ -51,6 +51,22 @@ The configuration file will setup the library with breakpoints and flex layout i
 
     // stop scaling
     box: 1px
+  ),
+
+  $container: (
+    0: (
+      max-width: 1200px,
+      padding: 1.6rem,
+      margin: auto // center
+    ),
+
+    tablet: (
+      padding: 2.4rem
+    ),
+
+    desktop: (
+      padding: 3.2rem
+    )
   )
 );
 ```
@@ -180,6 +196,30 @@ The media queries include the lower bound and exclude the upper bound.
 } // 1000px and up
 @include mq-between(1000px, 2000px) {
 } // 1000px to 1999px
+```
+
+### Container
+
+```scss
+$container: (
+  0: (
+    max-width: 1200px,
+    padding: 1.6rem,
+    margin: auto // center,,,
+  ),
+  tablet: (
+    padding: 2.4rem,
+  ),
+  desktop: (
+    padding: 3.2rem,
+  ),
+);
+```
+
+```scss
+@include container; // responsive container using all configured breakpoints
+@include container(desktop); // specific container at that breakpoint
+padding: container-padding(tablet); // container padding at that breakpoint
 ```
 
 ### Easings

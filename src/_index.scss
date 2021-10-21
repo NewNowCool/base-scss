@@ -1,5 +1,6 @@
 $breakpoints: () !default;
 $bases: () !default;
+$container: () !default;
 $reset: true !default;
 $font-smoothing: true !default;
 
@@ -8,6 +9,10 @@ $font-smoothing: true !default;
 
 @forward "layout/mq" as mq-* with (
   $breakpoints: $breakpoints
+);
+
+@forward "layout/container" with (
+  $container: $container,
 );
 
 @use "reset" with (

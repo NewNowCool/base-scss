@@ -6,10 +6,14 @@
   background: red;
 
   font-size: 2rem;
-  
+
   @include mq-from(tablet) {
     background: orange;
   }
+}
+
+.hero__container {
+  @include container;
 }
 
 .hero__title {
